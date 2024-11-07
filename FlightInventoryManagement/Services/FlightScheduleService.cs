@@ -70,21 +70,7 @@ namespace FlightInventoryManagement.Services
                     }
 
                     value.Add(outBoundFlight);
-                    var plane2 = new AirPlane(fligtNumber, AirplaneCapacity);
-
-                    var returnFlight = new Flight
-                    {
-                        Day = day,
-                        Departure = airport,
-                        Arrival = montrealAirport,
-                        Plane = plane2,
-                        Time = TimeOnly.Parse("18:00")
-                    };
-                    if (!flights.ContainsKey(returnFlight.Arrival.Code))
-                    {
-                        flights[returnFlight.Arrival.Code] = new List<Flight>();
-                    }
-                    flights[returnFlight.Arrival.Code].Add(returnFlight);
+                  
                 }
             }
             return flights;
@@ -150,16 +136,12 @@ namespace FlightInventoryManagement.Services
                 {
                     Console.WriteLine($"order: {order.Key}, flightNumber: not scheduled");
                 }
-
-
-
-
             }
 
         }
         public Dictionary<string, Order>? GetOrders()
         {
-            var filePath = Path.Combine(AppContext.BaseDirectory, "coding-assigment-orders.json");
+            var filePath = "coding-assigment-orders.json";
 
             var jsonString = File.ReadAllText(filePath);
 
