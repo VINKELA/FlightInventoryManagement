@@ -20,7 +20,7 @@ namespace FlightInventoryManagement.Services
     {
         private readonly int NoOFDays = 2;
         private readonly int NoOfPlanes = 3;
-        private readonly int AirplaneCapacity = 20;
+        private readonly int AirplaneCapacity = 15;
         private readonly IAirportService _airportService;
         public readonly Dictionary<int, Dictionary<string, List<Flight>>> DailyFlights = new Dictionary<int, Dictionary<string, List<Flight>>>();
 
@@ -80,12 +80,12 @@ namespace FlightInventoryManagement.Services
         {
             for (int i = 1; i <= NoOFDays; i++)
             {
-                var airports = DailyFlights[i];
-                foreach (var airPortflights in airports)
+                var dailyFlight = DailyFlights[i];
+                foreach (var airPortflights in dailyFlight)
                 {
-                    foreach (var item in airPortflights.Value)
+                    foreach (var flight in airPortflights.Value)
                     {
-                        Console.WriteLine($"Flight: {item.Plane.FlightNumber}, departure: {item.Departure.Code}, arrival: {item.Arrival.Code}, day: {item.Day}");
+                        Console.WriteLine($"Flight: {flight.Plane.FlightNumber}, departure: {flight.Departure.Code}, arrival: {flight.Arrival.Code}, day: {flight.Day}");
                     }
 
                 }
