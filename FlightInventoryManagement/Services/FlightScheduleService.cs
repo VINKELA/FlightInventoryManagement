@@ -115,30 +115,40 @@ namespace FlightInventoryManagement.Services
             foreach (var order in orders)
             {
                 var orderfufilled = false;
-
-                for (int i = 1; i <= NoOFDays && !orderfufilled; i++)
+                if (!string.IsNullOrEmpty(order.Key))
                 {
-                    var airports = DailyFlights[i];
-                    var destination = order.Value.Destination;
-                    if (!airports.ContainsKey(destination)) break;
-                    var flightsToDestinationToday = airports[destination];
-                    var countOfFlight = flightsToDestinationToday.Count;
-                    var j = 0;
-                    while (!orderfufilled && j < countOfFlight)
+                    //iterate through the days
+                    for (int i = 1; i <= NoOFDays && !orderfufilled; i++)
                     {
-                        var currentFlight = flightsToDestinationToday[j];
-                        if (currentFlight.Plane.Capacity > 0)
+                        var airports = DailyFlights[i];
+                        var destination = order.Value.Destination;
+                        if (!airports.ContainsKey(destination))
                         {
-                            Console.WriteLine($"order:{order.Key.Trim()}, flightNumber: {currentFlight.Plane.FlightNumber}, departure: {currentFlight.Departure.Code}, arrival: {currentFlight.Arrival.Code}, day: {currentFlight.Day}");
-                            currentFlight.Plane.Capacity--;
-                            orderfufilled = true;
+                            break;
                         }
-                        j++;
+                        var flightsToDestinationToday = airports[destination];
+                        var countOfFlight = flightsToDestinationToday.Count;
+                        var j = 0;
+                        while (!orderfufilled && j < countOfFlight)
+                        {
+                            var currentFlight = flightsToDestinationToday[j];
+                            //fufill Order
+                            if (currentFlight.Plane.Capacity > 0)
+                            {
+                                Console.WriteLine($"order:{order.Key.Trim()}, flightNumber: {currentFlight.Plane.FlightNumber}, departure: {currentFlight.Departure.Code}, arrival: {currentFlight.Arrival.Code}, day: {currentFlight.Day}");
+                                currentFlight.Plane.Capacity--;
+                                orderfufilled = true;
+                                break;
+                            }
+                            j++;
+                        }
+
                     }
-                    if (!orderfufilled && i == NoOFDays)
-                    {
-                        Console.WriteLine($"order: {order.Key}, flightNumber: not scheduled");
-                    }
+                }
+                //order is not fufilled
+                if (!orderfufilled)
+                {
+                    Console.WriteLine($"order: {order.Key}, flightNumber: not scheduled");
                 }
 
 
