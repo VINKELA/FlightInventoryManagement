@@ -159,7 +159,7 @@ namespace FlightInventoryManagement.Services
         }
         public Dictionary<string, Order>? GetOrders()
         {
-            var filePath = "C:\\Users\\User\\source\\repos\\FlightInventoryManagement\\FlightInventoryManagement\\coding-assigment-orders.json";
+            var filePath = Path.Combine(AppContext.BaseDirectory, "coding-assigment-orders.json");
 
             var jsonString = File.ReadAllText(filePath);
 
