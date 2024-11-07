@@ -61,7 +61,7 @@ namespace FlightInventoryManagement.Services
                         Departure = montrealAirport,
                         Arrival = airport,
                         Plane = plane1,
-                        TimeInMinutes = TimeOnly.Parse("12:00")
+                        Time = TimeOnly.Parse("12:00")
                     };
                     if (!flights.TryGetValue(outBoundFlight.Arrival.Code, out List<Flight>? value))
                     {
@@ -78,7 +78,7 @@ namespace FlightInventoryManagement.Services
                         Departure = airport,
                         Arrival = montrealAirport,
                         Plane = plane2,
-                        TimeInMinutes = TimeOnly.Parse("18:00")
+                        Time = TimeOnly.Parse("18:00")
                     };
                     if (!flights.ContainsKey(returnFlight.Arrival.Code))
                     {
