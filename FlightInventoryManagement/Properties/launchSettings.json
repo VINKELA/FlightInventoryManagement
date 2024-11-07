@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FlightInventoryManagement": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
