@@ -20,7 +20,7 @@ namespace FlightInventoryManagement.Services
     {
         private readonly int NoOFDays = 2;
         private readonly int NoOfPlanes = 3;
-        private readonly int AirplaneCapacity = 20;
+        private readonly int AirplaneCapacity = 15;
         private readonly IAirportService _airportService;
         public readonly Dictionary<int, Dictionary<string, List<Flight>>> DailyFlights = new Dictionary<int, Dictionary<string, List<Flight>>>();
 
