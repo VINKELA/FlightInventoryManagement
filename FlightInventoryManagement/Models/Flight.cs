@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlightInventoryManagement.Models
+{
+    public class Flight
+    {
+        public required Airport Departure { get; set; }
+        public required  Airport Arrival { get; set; }
+        public required int Day {  get; set; }
+        public required AirPlane Plane { get; set; }
+        public required TimeOnly TimeInMinutes { get; set; }
+        
+    }
+}
