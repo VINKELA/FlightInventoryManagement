@@ -21,7 +21,7 @@ namespace FlightInventoryManagement
             {
                 Console.WriteLine("\nEnter one of the following commands\n\n" +
                     $"{Commands.ListFlights} (To List Scheduled Flights)\n" +
-                    $"{Commands.GenerateOrderItenary} (To List Generated Order Itenary)\n" +
+                    $"{Commands.GenerateOrderItenary} (To Generate and List Generated Order Itenary)\n" +
                     $"{Commands.EndCommand}  (To End Program)\n\n");
 
                 var input = Console.ReadLine();
@@ -51,8 +51,6 @@ namespace FlightInventoryManagement
             serviceCollection.AddSingleton<IOrderService, OrderService>();
             serviceCollection.AddTransient<IAirPlaneService, AirPlaneService>();
             serviceCollection.AddTransient<IDayService, DayService>();
-
-
             return serviceCollection;
         }
     }

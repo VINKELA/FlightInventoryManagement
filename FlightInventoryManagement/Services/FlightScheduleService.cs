@@ -13,8 +13,6 @@ namespace FlightInventoryManagement.Services
         public void PrintSchedule();
         public void LoadDailySchedule();
         public void GenerateItenary();
-
-
     }
     public class FlightScheduleService : IFlightScheduleService
     {
@@ -23,7 +21,6 @@ namespace FlightInventoryManagement.Services
         private readonly IDayService _dayService;
         private readonly IOrderService _orderService;
         public readonly Dictionary<int, Dictionary<string, List<Flight>>> DailyFlights = new Dictionary<int, Dictionary<string, List<Flight>>>();
-
         public FlightScheduleService(IAirportService airportService, IAirPlaneService airPlane, IDayService dayService, IOrderService orderService)
         {
             _airportService = airportService;
@@ -41,7 +38,6 @@ namespace FlightInventoryManagement.Services
                 var day = days[i];
                 DailyFlights.Add(day.Id, ScheduleFlights(airports, day));
             }
-
         }
         private Dictionary<string, List<Flight>> ScheduleFlights(List<Airport> airports, Day day)
         {
@@ -91,9 +87,7 @@ namespace FlightInventoryManagement.Services
                             $"departure: {flight.Departure.Code}, " +
                             $"arrival: {flight.Arrival.Code}, day: {flight.Day.Id}");
                     }
-
                 }
-
             }
         }
         //generate itenary based on the orders
@@ -138,7 +132,6 @@ namespace FlightInventoryManagement.Services
                             }
                             j++;
                         }
-
                     }
                 }
                 //order is not fufilled
@@ -148,8 +141,6 @@ namespace FlightInventoryManagement.Services
                         $"not scheduled");
                 }
             }
-
         }
-
     }
 }

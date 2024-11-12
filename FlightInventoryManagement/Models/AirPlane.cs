@@ -17,7 +17,5 @@ namespace FlightInventoryManagement.Models
             Capacity = capacity;
             Airport = airport;
         }
-    } 
-
-    
+    }    
 }

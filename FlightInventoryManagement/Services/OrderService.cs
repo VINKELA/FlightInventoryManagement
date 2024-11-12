@@ -29,9 +29,7 @@ namespace FlightInventoryManagement.Services
             try
             {
                 var filePath = "coding-assigment-orders.json";
-
                 var jsonString = File.ReadAllText(filePath);
-
                 var ordersDictionary = JsonSerializer.Deserialize<Dictionary<string, OrderDTO>>(jsonString);
                 return ordersDictionary;
             }
