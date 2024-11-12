@@ -10,7 +10,7 @@ namespace FlightInventoryManagement.Services
 
     public interface IAirPlaneService
     {
-        List<AirPlane> GetAirPlanes();
+        List<Airplane> GetAirPlanes();
     }
     public class AirPlaneService : IAirPlaneService
     {
@@ -21,9 +21,9 @@ namespace FlightInventoryManagement.Services
         {
             _airportService = airportService;
         }
-        public List<AirPlane> GetAirPlanes()
+        public List<Airplane> GetAirPlanes()
         {
-            var list = new List<AirPlane>();
+            var list = new List<Airplane>();
             var airports = _airportService.GetAirports();
             for(int i = 0;i < NoOfPlanes; i++)
             {
@@ -33,7 +33,7 @@ namespace FlightInventoryManagement.Services
                     //we assume montreal airport is 0, so we begin from the next in the list
                     airport = airports[i+1];
                 };
-                list.Add(new AirPlane(i + 1, AirplaneCapacity, airport));
+                list.Add(new Airplane(i + 1, AirplaneCapacity, airport));
             }
             return list;
         }

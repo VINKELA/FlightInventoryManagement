@@ -11,7 +11,7 @@ namespace FlightInventoryManagement.Models
         public required Airport Departure { get; set; }
         public required  Airport Arrival { get; set; }
         public required Day Day {  get; set; }
-        public required AirPlane Plane { get; set; }
+        public required Airplane Plane { get; set; }
         public required TimeOnly Time { get; set; }
         
     }
