@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static FlightInventoryManagement.Models.OrderDTO;
 
 namespace FlightInventoryManagement.Services
 {
@@ -13,6 +14,8 @@ namespace FlightInventoryManagement.Services
         public void PrintSchedule();
         public void LoadDailySchedule();
         public void GenerateItenary();
+        public void GetFlightOrders(int flightnumber);
+
     }
     public class FlightScheduleService : IFlightScheduleService
     {
@@ -125,7 +128,9 @@ namespace FlightInventoryManagement.Services
                                 $"flightNumber: {currentFlight.Plane.FlightNumber}," +
                                 $" departure: {currentFlight.Departure.Code}, " +
                                 $"arrival: {currentFlight.Arrival.Code}, " +
+                                $"priority: {order.Priority}, " +
                                 $"day: {currentFlight.Day.Id}");
+                                currentFlight.Orders.Add(order);
                                 currentFlight.Plane.Capacity--;
                                 orderfufilled = true;
                                 break;
@@ -139,6 +144,35 @@ namespace FlightInventoryManagement.Services
                 {
                     Console.WriteLine($"order: {order.Name}, flightNumber: " +
                         $"not scheduled");
+                }
+            }
+        }
+        public void GetFlightOrders(int flightnumber)
+        {
+            var days = _dayService.GetDays();
+            var list = new List<Flight>();
+            for(int i = 0; i < days.Count; i++)
+            {
+                var graph = DailyFlights[i + 1];
+                foreach(var key in graph.Keys)
+                {
+                    var flights = graph[key];
+                    foreach (var flight in flights) 
+                    {
+                        var orders = flight.Orders;
+                        foreach (var order in orders)
+                        {
+                            if (flight.Plane.FlightNumber == flightnumber)
+                            {
+                                Console.WriteLine($"order:{order.Name}, " +
+                                   $"flightNumber: {flight.Plane.FlightNumber}," +
+                                   $" departure: {flight.Departure.Code}, " +
+                                   $"arrival: {flight.Arrival.Code}, " +
+                                   $"day: {flight.Day.Id}");
+                            }
+                        }
+                       
+                    }
                 }
             }
         }

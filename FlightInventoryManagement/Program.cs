@@ -34,6 +34,9 @@ namespace FlightInventoryManagement
                     case Commands.GenerateOrderItenary:
                         schedulingService.GenerateItenary();
                         break;
+                    case Commands.ListFlightOrders:
+                        schedulingService.GetFlightOrders(1);
+                        break;
                     case Commands.EndCommand:
                         endApp = true;
                         break;

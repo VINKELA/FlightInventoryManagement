@@ -13,6 +13,10 @@ namespace FlightInventoryManagement.Models
         public required Day Day {  get; set; }
         public required Airplane Plane { get; set; }
         public required TimeOnly Time { get; set; }
-        
+        public List<Order> Orders { get; set; } = new List<Order>();
+
+
+
+
     }
 }

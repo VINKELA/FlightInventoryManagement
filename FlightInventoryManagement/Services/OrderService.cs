@@ -18,11 +18,28 @@ namespace FlightInventoryManagement.Services
         {
             var orders = GetOrdersFromFile();
             if (orders == null) return new List<Order>();
+
             return orders.Select(x => new Order
             {
+                Priority = GetPriorty(x.Value.Service),
                 Destination = x.Value.Destination,
                 Name = x.Key
-            }).ToList();
+            }).OrderBy(x => x.Priority).ToList();
+        }
+
+        private OrderPriority GetPriorty(string priority)
+        {
+            
+            switch(priority){
+                case "regular":
+                    return OrderPriority.RegularFreightServices;
+                case "next-day":
+                    return OrderPriority.GuaranteedNextDay;
+                case "same-day":
+                    return OrderPriority.SameDay;
+                default:
+                    return OrderPriority.RegularFreightServices;
+            }
         }
         private Dictionary<string, OrderDTO>? GetOrdersFromFile()
         {

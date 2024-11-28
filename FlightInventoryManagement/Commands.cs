@@ -10,6 +10,7 @@ namespace FlightInventoryManagement
     {
         public const string ListFlights = "list flights";
         public const string GenerateOrderItenary = "generate itenary";
+        public const string ListFlightOrders = "list flight orders";
         public const string EndCommand = "x";
     }
 }
